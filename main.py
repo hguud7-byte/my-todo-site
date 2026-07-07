@@ -20,7 +20,7 @@ def main(page: ft.Page):
             task_input.value = ""
             page.update()
 
-    # واجهة التطبيق
+    # واجهة التطبيق بألوان نصوص مباشرة ومضمونة
     page.add(
         ft.Row(
             [
@@ -31,13 +31,13 @@ def main(page: ft.Page):
         ft.Row(
             [
                 task_input,
-                ft.ElevatedButton("إضافة", on_click=add_clicked, bgcolor=ft.colors.BLUE, color=ft.colors.WHITE)
+                ft.ElevatedButton("إضافة", on_click=add_clicked, bgcolor="blue", color="white")
             ]
         ),
         tasks_list
     )
 
-# السطر السحري والأخير المتوافق مع سيرفر Render
+# السطر السحري لتشغيل السيرفر بنجاح
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8550))
     ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=port, host="0.0.0.0")
