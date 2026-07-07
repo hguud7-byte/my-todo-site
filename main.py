@@ -70,4 +70,4 @@ def main(page: ft.Page):
 
 # السطر الأخير السحري: يأخذ رقم المنفذ (Port) الممنوح من سيرفر الإنترنت تلقائياً ويشغل التطبيق كموقع ويب
 port = int(os.environ.get("PORT", 8550))
-ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=port)
+ft.app(main)
