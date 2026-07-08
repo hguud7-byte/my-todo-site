@@ -14,13 +14,13 @@ def main(page: ft.Page):
     def change_theme(e):
         if page.theme_mode == ft.ThemeMode.LIGHT:
             page.theme_mode = ft.ThemeMode.DARK
-            theme_btn.text = "الوضع المضيء"
+            theme_btn.text = "الوضع Mضيء"
         else:
             page.theme_mode = ft.ThemeMode.LIGHT
             theme_btn.text = "الوضع الليلي"
         page.update()
 
-    # زر تغيير الألوان (بدون أيقونات لضمان عدم حدوث خطأ)
+    # زر تغيير الألوان
     theme_btn = ft.ElevatedButton(
         text="الوضع الليلي",
         on_click=change_theme,
@@ -38,7 +38,6 @@ def main(page: ft.Page):
         task_row = ft.Row(alignment=ft.MainAxisAlignment.BETWEEN)
         chk = ft.Checkbox(label=task_text)
         
-        # زر حذف مكتوب كتابة (نص) ليكون مضموناً 100% على السيرفر
         btn_delete = ft.TextButton(
             text="حذف",
             style=ft.ButtonStyle(color="red"),
@@ -78,7 +77,7 @@ def main(page: ft.Page):
         tasks_list
     )
 
-# العودة للسطر السحري القياسي الذي نجح في البداية
+# تشغيل بأبسط وأضمن طريقة ويب ممكنة تجبر flet على فتح بورت السيرفر
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8550))
-    ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=port, host="0.0.0.0")
+    port_env = os.environ.get("PORT", "8080")
+    ft.app(target=main, port=int(port_env), host="0.0.0.0")
