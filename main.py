@@ -20,9 +20,11 @@ def main(page: ft.Page):
         row = ft.Row(alignment=ft.MainAxisAlignment.CENTER)
         chk = ft.Checkbox(label=text_value)
         
-        btn_del = ft.TextButton(
-            text="حذف", 
-            style=ft.ButtonStyle(color="red"), 
+        # استخدام ElevatedButton بالصيغة القديمة المضمونة بالسيرفر
+        btn_del = ft.ElevatedButton(
+            "حذف", 
+            color="white",
+            bgcolor="red",
             on_click=lambda e: delete_clicked(e, row)
         )
         
