@@ -14,18 +14,18 @@ def main(page: ft.Page):
     def change_theme(e):
         if page.theme_mode == ft.ThemeMode.LIGHT:
             page.theme_mode = ft.ThemeMode.DARK
-            theme_btn.icon = ft.icons.SUNNY
+            theme_btn.icon = "wb_sunny"
             theme_btn.text = "الوضع المضيء"
         else:
             page.theme_mode = ft.ThemeMode.LIGHT
-            theme_btn.icon = ft.icons.DARK_MODE
+            theme_btn.icon = "brightness_3"
             theme_btn.text = "الوضع الليلي"
         page.update()
 
-    # زر تغيير الألوان
+    # زر تغيير الألوان بأيقونات نصوص مباشرة مضمونة
     theme_btn = ft.ElevatedButton(
         text="الوضع الليلي",
-        icon=ft.icons.DARK_MODE,
+        icon="brightness_3",
         on_click=change_theme,
         bgcolor="blue",
         color="white"
@@ -42,7 +42,7 @@ def main(page: ft.Page):
         chk = ft.Checkbox(label=task_text)
         
         btn_delete = ft.IconButton(
-            icon=ft.icons.DELETE_OUTLINE,
+            icon="delete",
             icon_color="red",
             on_click=lambda e: delete_task(e, task_row)
         )
@@ -80,8 +80,5 @@ def main(page: ft.Page):
         tasks_list
     )
 
-# التعديل الجذري والنهائي المتوافق مع Render لـ Flet Web
-if __name__ == "__main__":
-    # نأخذ البورت الذي يفرضه Render أو نستخدم 8080 كافتراضي للويب
-    server_port = int(os.environ.get("PORT", 8080))
-    ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=server_port, host="0.0.0.0")
+# التصدير المتوافق مع خادم الويب
+app = ft.app(target=main, asset_dir="assets", export_asgi=True)
