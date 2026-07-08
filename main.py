@@ -14,18 +14,15 @@ def main(page: ft.Page):
     def change_theme(e):
         if page.theme_mode == ft.ThemeMode.LIGHT:
             page.theme_mode = ft.ThemeMode.DARK
-            theme_btn.icon = "wb_sunny"
             theme_btn.text = "الوضع المضيء"
         else:
             page.theme_mode = ft.ThemeMode.LIGHT
-            theme_btn.icon = "brightness_3"
             theme_btn.text = "الوضع الليلي"
         page.update()
 
-    # زر تغيير الألوان بأيقونات نصوص مباشرة مضمونة
+    # زر تغيير الألوان (بدون أيقونات لضمان عدم حدوث خطأ)
     theme_btn = ft.ElevatedButton(
         text="الوضع الليلي",
-        icon="brightness_3",
         on_click=change_theme,
         bgcolor="blue",
         color="white"
@@ -41,9 +38,10 @@ def main(page: ft.Page):
         task_row = ft.Row(alignment=ft.MainAxisAlignment.BETWEEN)
         chk = ft.Checkbox(label=task_text)
         
-        btn_delete = ft.IconButton(
-            icon="delete",
-            icon_color="red",
+        # زر حذف مكتوب كتابة (نص) ليكون مضموناً 100% على السيرفر
+        btn_delete = ft.TextButton(
+            text="حذف",
+            style=ft.ButtonStyle(color="red"),
             on_click=lambda e: delete_task(e, task_row)
         )
         
@@ -80,5 +78,7 @@ def main(page: ft.Page):
         tasks_list
     )
 
-# التصدير المتوافق مع خادم الويب
-app = ft.app(target=main, asset_dir="assets", export_asgi=True)
+# العودة للسطر السحري القياسي الذي نجح في البداية
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8550))
+    ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=port, host="0.0.0.0")
