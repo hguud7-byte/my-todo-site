@@ -38,7 +38,7 @@ def main(page: ft.Page):
         task_row = ft.Row(alignment=ft.MainAxisAlignment.BETWEEN)
         chk = ft.Checkbox(label=task_text)
         
-        # تصحيح زر الحذف باستخدام TextButton الصحيح
+        # زر الحذف الصحيح والمضمون
         btn_delete = ft.TextButton(
             text="حذف",
             style=ft.ButtonStyle(color="red"),
@@ -59,7 +59,7 @@ def main(page: ft.Page):
     # حقل إدخال المهمة الجديدة
     task_input = ft.TextField(hint_text="ماذا تريد أن تفعل اليوم؟", expand=True)
 
-    # واجهة التطبيق
+    # واجهة التطبيق كاملة ومنظمة بدون تكرار أسطر
     page.add(
         ft.Row([theme_btn], alignment=ft.MainAxisAlignment.END),
         ft.Row(
@@ -78,6 +78,7 @@ def main(page: ft.Page):
         tasks_list
     )
 
+# طريقة التشغيل المعتمدة والأكيدة للبورت
 if __name__ == "__main__":
     port_env = os.environ.get("PORT", "8080")
     ft.app(target=main, port=int(port_env), host="0.0.0.0")
